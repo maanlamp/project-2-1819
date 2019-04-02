@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/maanlamp/project-2-1819#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6"
   }
 }

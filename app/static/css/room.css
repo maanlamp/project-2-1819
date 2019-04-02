@@ -1,0 +1,117 @@
+#app {
+	position: relative;
+	background-color: white;
+	font-family: "Roboto", sans-serif;
+	font-weight: 900;
+	background-size: cover;
+	transition: background 1s ease;
+} #app.hot {
+	color: white;
+	background: rgb(253,213,161) url("../images/bg-hot.svg") no-repeat;
+} #app.cool {
+	color: white;
+	background: rgb(143,223,217) url("../images/bg-cool.svg") no-repeat;
+} #app.freezing {
+	color: white;
+	background: rgb(157,186,255) url("../images/bg-freezing.svg") no-repeat;
+} #app.boiling {
+	color: white;
+	background: rgb(224,165,98) url("../images/bg-boiling.svg") no-repeat;
+}
+
+#app>#hero {
+	padding: 33% 0 0 2rem;
+} #app>#hero>* {
+	display: inline-block;
+} #app>#hero>h1 {
+	margin-bottom: .5rem;
+	font-size: 1rem;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+	font-weight: 900;
+} #app>#hero>#date {
+	margin-left: .5rem;
+	font-size: 1rem;
+	font-weight: 300;
+} #app>#hero>#tmp {
+	font-weight: 500;
+	font-size: 5rem;
+	min-width: 128px;
+} #app>#hero>#tmp::after {
+	font-weight: 300;
+	content: "°";
+	font-size: .75em;
+	position: relative;
+	top: -.225em;
+}
+
+#app>#reminder {
+	margin: 1rem 0 0 2rem;
+	font-weight: 400;
+	width: 70%;
+	opacity: 0;
+	display: -ms-flexbox;
+	display: flex;
+	transition: opacity .1s ease;
+} #app>#reminder>img {
+	width: 1.25rem;
+	height: 1.25rem;
+	margin: .5rem .5rem 0 0;
+	transform-origin: center top;
+} #app>#reminder>img[src*="-on"] {
+	animation: wiggle .75s linear;
+} #app>#reminder>button[type="submit"] {
+	border: none;
+	background: none;
+	font: inherit;
+	color: inherit;
+	text-align: left;
+	font-weight: 400;
+	width: 100%;
+} #app.occupied>#reminder {
+	opacity: 1;
+}
+
+#app>footer {
+	font-weight: 400;
+	color: black;
+	background: white;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 1.25rem 1.25rem 2rem 1.25rem;
+	display: -ms-flexbox;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+} #app>footer>.data>h2 {
+	margin-bottom: .5rem;
+	font-size: .75rem;
+	text-transform: uppercase;
+	font-weight: 900;
+	color: rgb(184, 184, 184);
+	letter-spacing: .66px;
+} #app>footer>#credits {
+	flex: 0 0 100%;
+	font-weight: 400;
+	font-size: .5rem;
+	color: rgb(182, 182, 182);
+	position: absolute;
+	bottom: .5rem;
+	left: 0;
+	right: 0;
+	text-align: center;
+} #app>footer>#credits>a {
+	color: inherit;
+}
+
+@keyframes wiggle {
+	0%   {transform: rotate(0deg)}
+	1%  {transform: rotate(30deg)}
+	20%  {transform: rotate(-27deg)}
+	40%  {transform: rotate(22deg)}
+	60%  {transform: rotate(-17deg)}
+	80%  {transform: rotate(6deg)}
+	100% {transform: rotate(0deg)}
+}

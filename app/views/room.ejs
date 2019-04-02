@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="css/viewport.css">
+	<link rel="stylesheet" href="css/room.css">
+	<link rel="stylesheet" href="css/odometer-minimal.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,900" rel="stylesheet">
+	<script src="js/room.js" defer></script>
+	<script src="js/odometer.min.js" defer></script>
+	<title><%= `${roomname}: ${tmp}° en ${occ ? "bezet" : "vrij"}.`; %></title>
+</head>
+<body>
+	<main id="app" class="<%= roomstate; %>">
+		<div id="hero">
+			<h1><%= roomname; %></h1>
+			<h2 id="date"><%= date; %></h2>
+			<p id="tmp" class="odometer"><%= tmp; %></p>
+		</div>
+		<form id="reminder" action=<%= `/${(shouldnotify) ? "unsub" : "reminder"}/${roomname}`; %> method="POST">
+			<img src=<%= `images/${(shouldnotify) ? "notification-on" : "notification"}.svg` %> alt="Rinkelend belletje dat een notificatie symboliseert">
+			<button type="submit">Laat me <%= (shouldnotify) ? "niet meer " : "" %>weten wanneer deze kamer vrij is.</button>
+		</form>
+		<footer>
+			<div class="data">
+				<h2>Luchtkwaliteit</h2>
+				<p id="air"><%= air; %></p>
+			</div>
+			<div class="data">
+				<h2>Rumoerigheid</h2>
+				<p id="snd"><%= snd; %></p>
+			</div>
+			<div class="data">
+				<h2>Bezet</h2>
+				<p id="occ"><%= occ; %></p>
+			</div>
+			<p id="credits">Iconen gemaakt door <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> van <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>, gelicenseerd door <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
+		</footer>
+	</main>
+</body>
+</html>
