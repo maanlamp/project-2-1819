@@ -47,3 +47,9 @@ function setRoomState (options) {
 		else if (sound >  8500) return "Intens";
 	})();
 }
+
+/* Getting and updating data in app
+fetch("/Mayweather", {headers:{"Accept": "application/json"}})
+	.then(body => body.json())
+	.then(setRoomState);
+*/
