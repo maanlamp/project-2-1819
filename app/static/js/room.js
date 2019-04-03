@@ -23,6 +23,12 @@ function setRoomState (options) {
 				if      (airQuality <= 500)  return "clear ";
 				else if (airQuality <= 1000) return "smoggy ";
 				else if (airQuality >  1000) return "dangerous ";
+			})()
+		+ (()=>{
+				if      (sound <= 2500) return "quiet";
+				else if (sound <= 6000) return "minimal";
+				else if (sound <= 8500) return "loud";
+				else if (sound >  8500) return "intense";
 			})();
 
 	document.querySelector("#app").className = roomstate;

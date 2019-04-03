@@ -18,7 +18,11 @@ app
 		const {roomname} = req.params;
 		const shouldnotify = req.session.notify[roomname] || false;
 		const {roomstate, tmp, air, snd, occ} = await fetchData().then(transformData);
-		res.render("room", {roomstate, shouldnotify, roomname, tmp, air, snd, occ, date: getDate()});})
+		switch (req.accepts(["html", "json"])){
+			case "html": return res.render("room", {roomstate, shouldnotify, roomname, tmp, air, snd, occ, date: getDate()});
+			case "json": return res.json({roomstate, shouldnotify, roomname, tmp, air, snd, occ, date: getDate()});
+			default: res.status(415).end("Unsupported Content-Type requested. Try application/json or text/html");
+		}})
 	.post("/reminder/:roomname", (req, res) => {
 		//Set reminder server side?
 		const {roomname} = req.params;
@@ -33,10 +37,10 @@ app
 
 async function fetchData () {
 	return {
-		tmp: 35,
-		air: 428,
-		snd: 2090,
-		occ: true
+		tmp: Math.floor(Math.random() * 32),
+		air: Math.floor(Math.random() * 1100),
+		snd: Math.floor(Math.random() * 9000),
+		occ: Boolean(Math.random())
 	};
 }
 
@@ -52,10 +56,16 @@ function transformData (data) {
 		})()
 		+ ((occ === true) ? "occupied " : "")
 		+ (()=>{
-			if      (air <= 500)  return "clear ";
-			else if (air <= 1000) return "smoggy ";
-			else if (air >  1000) return "dangerous ";
-		})(),
+				if      (air <= 500)  return "clear ";
+				else if (air <= 1000) return "smoggy ";
+				else if (air >  1000) return "dangerous ";
+			})()
+		+ (()=>{
+				if      (snd <= 2500) return "quiet";
+				else if (snd <= 6000) return "minimal";
+				else if (snd <= 8500) return "loud";
+				else if (snd >  8500) return "intense";
+			})(),
 		air: (()=>{
 			if      (air <= 500)  return "Geweldig";
 			else if (air <= 750)  return "Goed";

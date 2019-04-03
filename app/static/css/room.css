@@ -60,6 +60,25 @@
 	top: 9rem;
 	left: -8rem;
 	width: 30rem;
+} #app>#vis>#ppl {
+	position: absolute;
+	left: -.75rem;
+	bottom: 0;
+	opacity: 0;
+	transition: opacity 1s ease, bottom 1s ease;
+	transform-origin: center bottom;
+} #app.minimal>#vis>#ppl {
+	bottom: -2rem;
+	opacity: .25;
+	animation: whisper 4s ease infinite;
+} #app.loud>#vis>#ppl {
+	bottom: 0;
+	opacity: .5;
+	animation: loud 2s ease infinite;
+} #app.intense>#vis>#ppl {
+	bottom: 2rem;
+	opacity: 1;
+	animation: intense 1s ease infinite;
 }
 
 #app>#hero {
@@ -163,4 +182,15 @@
 @keyframes cloud {
 	33%  {transform: translateX(-50px)}
 	66% {transform: translateX(50px)}
+}
+
+@keyframes whisper {
+	33% {transform: translateY(.25rem)}
+	66% {transform: translateY(-1rem)}
+} @keyframes loud {
+	33% {transform: translateY(.25rem)}
+	66% {transform: translateY(-1.5rem)}
+} @keyframes intense {
+	33% {transform: translateY(.25rem)}
+	66% {transform: translateY(-2rem)}
 }
