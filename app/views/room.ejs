@@ -14,13 +14,19 @@
 </head>
 <body>
 	<main id="app" class="<%= roomstate; %>">
+		<div id="vis">
+			<img id="sun" src="images/sun.svg" alt="Schijnend zonnetje.">
+			<img id="cloud1" class="cloud" src="images/cloud.svg" alt="Wolk van co2-deeltjes.">
+			<img id="cloud2" class="cloud" src="images/cloud.svg" alt="Wolk van co2-deeltjes.">
+			<img id="cloud3" class="cloud" src="images/cloud.svg" alt="Wolk van co2-deeltjes.">
+		</div>
 		<div id="hero">
 			<h1><%= roomname; %></h1>
 			<h2 id="date"><%= date; %></h2>
 			<p id="tmp" class="odometer"><%= tmp; %></p>
 		</div>
 		<form id="reminder" action=<%= `/${(shouldnotify) ? "unsub" : "reminder"}/${roomname}`; %> method="POST">
-			<img src=<%= `images/${(shouldnotify) ? "notification-on" : "notification"}.svg` %> alt="Rinkelend belletje dat een notificatie symboliseert">
+			<img src=<%= `images/${(shouldnotify) ? "notification-on" : "notification"}.svg`; %> alt="Rinkelend belletje dat een notificatie symboliseert">
 			<button type="submit">Laat me <%= (shouldnotify) ? "niet meer " : "" %>weten wanneer deze kamer vrij is.</button>
 		</form>
 		<footer>
@@ -36,7 +42,10 @@
 				<h2>Bezet</h2>
 				<p id="occ"><%= occ; %></p>
 			</div>
-			<p id="credits">Iconen gemaakt door <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> van <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>, gelicenseerd door <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
+			<div id="credits">
+				<p>Iconen gemaakt door <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> van <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>, gelicenseerd door <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
+				<a href="https://www.freepik.com/free-vector/people-with-speech-bubbles-illustration_3226200.htm">People vector created by rawpixel.com - www.freepik.com</a>
+			</div>
 		</footer>
 	</main>
 </body>

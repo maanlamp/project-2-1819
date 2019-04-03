@@ -34,3 +34,6 @@ In het vak [Performance Matters](https://github.com/cmda-minor-web/performance-m
 - Presentatie met je bevindingen bij de opdrachtgever. 
 - Github met je code en readme.
 
+## O
+
+cc wordt gemeten door beweging, maar je kunt ook unoccupied krijgen als iedereen stil zit en dan moet je kijken op geluidsniveau

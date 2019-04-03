@@ -9,7 +9,7 @@ app
 	.set("view engine", "ejs")
 	.use(bodyparser)
 	.use(session)
-	.use((req, res, next) => {if (!req.session.notify) req.session.notify = new Object(); next();})
+	.use(initSession)
 	.use(express.static("app/static"));
 
 app
@@ -45,11 +45,17 @@ function transformData (data) {
 	return {
 		tmp,
 		roomstate: (()=>{
-			if      (tmp <= 10) return "freezing";
-			else if (tmp <= 20) return "cool";
-			else if (tmp <= 30) return "hot";
-			else if (tmp >  30) return "boiling";
-		})() + ((occ) ? " occupied" : ""),
+			if      (tmp <= 14) return "freezing ";
+			else if (tmp <= 22) return "cool ";
+			else if (tmp <= 28) return "hot ";
+			else if (tmp >  28) return "boiling ";
+		})()
+		+ ((occ === true) ? "occupied " : "")
+		+ (()=>{
+			if      (air <= 500)  return "clear ";
+			else if (air <= 1000) return "smoggy ";
+			else if (air >  1000) return "dangerous ";
+		})(),
 		air: (()=>{
 			if      (air <= 500)  return "Geweldig";
 			else if (air <= 750)  return "Goed";
@@ -77,4 +83,9 @@ function getDate () {
 	const month = dateHelpers.months[date.getMonth()];
 
 	return `${day} ${daynum} ${month}`;
+}
+
+function initSession (req, res, next) {
+	if (!req.session.notify) req.session.notify = new Object();
+	next();
 }

@@ -10,7 +10,6 @@ body {
 
 #app {
 	box-shadow: 0 .25rem .5rem .1rem rgba(0, 0, 0, .1);
-	border-radius: 4px;
 	height: 100%;
 }
 
@@ -25,5 +24,6 @@ body {
 	#app {
 		width: 375px;
 		height: 712px;
+		border-radius: 4px;
 	}
 }
