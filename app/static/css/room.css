@@ -1,8 +1,4 @@
 #app {
-	position: relative;
-	background-color: white;
-	font-family: "Roboto", sans-serif;
-	font-weight: 900;
 	background-size: cover;
 	transition: background 1s ease;
 } #app.hot {
@@ -137,8 +133,8 @@
 
 #app>footer {
 	font-weight: 400;
-	color: black;
-	background: white;
+	color: white;
+	background-color: #314162;
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -153,13 +149,13 @@
 	font-size: .75rem;
 	text-transform: uppercase;
 	font-weight: 900;
-	color: rgb(184, 184, 184);
+	color: #B7B0D8;
 	letter-spacing: .66px;
 } #app>footer>#credits {
 	flex: 0 0 100%;
 	font-weight: 400;
 	font-size: .5rem;
-	color: rgb(182, 182, 182);
+	color: #B7B0D8;
 	position: absolute;
 	bottom: .5rem;
 	left: 0;
