@@ -1,7 +1,6 @@
 # Project 2
 ## Weather-app-ish Availability Checker Thingy
-![An animated gif image showing a glimpse of the live demo through animation.](assets/demo.gif)
-[Try the live demo here]()
+![An animated gif image showing a glimpse of the app being used.](assets/demo.gif)
 
 ## Product
 
