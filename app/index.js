@@ -3,7 +3,7 @@ const app = express();
 const bodyparser = require("body-parser").urlencoded({extended: false});
 const session = require("express-session")({secret: "Geheimpie ;)", resave: false, saveUninitialized: true});
 const { overview, room, reminder, unsub} = require("./routes.js");
-const PORT = 1337;
+const PORT = process.env.port || 1337;
 
 function initSession (req, res, next) {
 	if (!req.session.notify) req.session.notify = new Object();

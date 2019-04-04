@@ -61,12 +61,12 @@ module.exports.getDate = function getDate () {
 
 module.exports.fetchAll = async function fetchAll () {
 	return [
-		{occ: false, name: "Mayweather", tmp: 25, bkd: false},
-		{occ: false, name: "Barend", tmp: 21, bkd: false},
-		{occ: true, name: "Data Dojo", tmp: 12, bkd: true},
-		{occ: true, name: "Data2 Dojo", tmp: 12, bkd: true},
-		{occ: true, name: "Data3 Dojo", tmp: 12, bkd: true},
-		{occ: true, name: "Data4 Dojo", tmp: 12, bkd: true},
-		{occ: false, name: "Gert", tmp: 19, bkd: true}
+		{occ: false, name: "Starkweather", tmp: 25, bkd: false},
+		{occ: false, name: "Edison", tmp: 21, bkd: false},
+		{occ: true, name: "Lamar", tmp: 12, bkd: true},
+		{occ: true, name: "Analytics Dojo", tmp: 12, bkd: true},
+		{occ: true, name: "Hull", tmp: 12, bkd: true},
+		{occ: true, name: "Lippershey", tmp: 12, bkd: true},
+		{occ: false, name: "Nell", tmp: 19, bkd: true}
 	];
 }
