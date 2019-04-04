@@ -2,7 +2,28 @@
 ## Weather-app-ish Availability Checker Thingy
 ![An animated gif image showing a glimpse of the app being used.](assets/demo.gif)
 
-## Product
+## Getting started
+Clone
+```shell
+git clone https://github.com/maanlamp/project-2-1819.git
+```
+
+Install
+```shell
+npm i
+```
+
+Build
+```shell
+npm run build
+```
+
+Start
+```shell
+npm run start
+```
+
+This will start the app on port `1337`, and the database on port `3000`.
 
 ## Performance matters
 In order to use the app effectively anywhere, I used compression middleware to spare precious bytes and seconds nobody is really willing to spare. Besides the compression, I've just about minified EVERY single file that I could minimize. I wanted to use a service worker to cache everything for offline use, but I didn; t ahve the time.
