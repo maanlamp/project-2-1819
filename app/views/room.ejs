@@ -8,12 +8,13 @@
 	<link rel="stylesheet" href="css/room.min.css" defer>
 	<link rel="stylesheet" href="css/odometer-minimal.min.css" defer>
 	<link rel="stylesheet" href="css/fonts.css" defer>
-	<script src="js/room.min.js" defer></script>
+	<script src="js/room.js" defer></script>
 	<script src="js/odometer.min.js" defer></script>
 	<title><%= `${roomname}: ${tmp}° en ${occ ? "bezet" : "vrij"}.`; %></title>
 </head>
 <body>
 	<main id="app" class="<%= roomstate; %>">
+		<a id="back" href="/"><img src="images/back.svg" alt="Terug-knop"></a>
 		<div id="vis">
 			<img id="sun" src="images/sun.svg" alt="Schijnend zonnetje.">
 			<img id="cloud1" class="cloud" src="images/cloud.svg" alt="Wolk van co2-deeltjes.">

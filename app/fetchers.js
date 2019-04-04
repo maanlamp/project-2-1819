@@ -1,22 +1,33 @@
-module.exports.fetchRoom = async function fetchRoom (israndom) {
-	if (israndom) {}; //return random
-	return transformData({
-		tmp: Math.floor(Math.random() * 32),
+const fetch = require("node-fetch");
+
+module.exports.fetchRoom = async function fetchRoom (roomname) {
+	if (roomname === "random") return transformData({
+		tmp: Math.floor(Math.random() * 3200),
 		air: Math.floor(Math.random() * 1100),
 		snd: Math.floor(Math.random() * 9000),
 		occ: Boolean(Math.random())
 	});
+
+	return fetch("http://localhost:3000/api/v1/room/" + roomname)
+		.then(res => res.json())
+		.then(json => json.data.measurements)
+		.then(json => transformData({
+			tmp: json.temperature,
+			air: json.co2,
+			snd: json.mic_level,
+			occ: json.occupancy
+		}));
 }
 
 function transformData (data) {
 	const { tmp, air, snd, occ } = data;
 	return {
-		tmp,
+		tmp: Number((tmp / 1000).toFixed(1).replace(/\.0/, "")),
 		roomstate: (()=>{
-			if      (tmp <= 14) return "freezing ";
-			else if (tmp <= 22) return "cool ";
-			else if (tmp <= 28) return "hot ";
-			else if (tmp >  28) return "boiling ";
+			if      (tmp <= 1400) return "freezing ";
+			else if (tmp <= 2200) return "cool ";
+			else if (tmp <= 2800) return "hot ";
+			else if (tmp >  2800) return "boiling ";
 		})()
 		+ ((occ === true) ? "occupied " : "")
 		+ (()=>{
@@ -60,13 +71,17 @@ module.exports.getDate = function getDate () {
 }
 
 module.exports.fetchAll = async function fetchAll () {
-	return [
-		{occ: false, name: "Starkweather", tmp: 25, bkd: false},
-		{occ: false, name: "Edison", tmp: 21, bkd: false},
-		{occ: true, name: "Lamar", tmp: 12, bkd: true},
-		{occ: true, name: "Analytics Dojo", tmp: 12, bkd: true},
-		{occ: true, name: "Hull", tmp: 12, bkd: true},
-		{occ: true, name: "Lippershey", tmp: 12, bkd: true},
-		{occ: false, name: "Nell", tmp: 19, bkd: true}
-	];
+	return fetch("http://localhost:3000/api/v1/rooms/")
+		.then(res => res.json())
+		.then(json => json.data
+			.map(room => Object.assign({}, room.measurements, {name: room.room_name}))
+			.map(room=>{console.log(room);return room})
+			.map(room => Object.assign({}, transformData({
+				tmp: room.temperature,
+				air: room.co2,
+				snd: room.mic_level,
+				occ: room.occupancy,
+				bkd: Math.round(Math.random()) ? true : false}),
+				{name: room.name}))
+			.map(room => Object.assign(room, {occ: (room.occ === "Yep") ? true : false})));
 }

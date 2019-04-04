@@ -2,9 +2,9 @@ const { fetchRoom, fetchAll, getDate } = require("./fetchers.js");
 
 module.exports.overview = async function overview (req, res) {
 	const rooms = (await fetchAll())
-		.sort((roomA, roomB) => (roomA.tmp < roomB.tmp) ? 1 : -1)
-		.sort(room => room.occ ? 1 : -1)
-		.sort(room => room.bkd ? 1 : -1);
+		.sort((roomA, roomB) => (roomA.tmp < roomB.tmp) ? -1 : 1)
+		.sort(room => room.occ ? -1 : 1)
+		.sort(room => room.bkd ? -1 : 1);
 	const free = rooms
 		.filter(room => !room.occ && !room.bkd)
 		.length;
@@ -26,7 +26,7 @@ module.exports.overview = async function overview (req, res) {
 module.exports.room = async function room (req, res) {
 	const { roomname } = req.params;
 	const shouldnotify = req.session.notify[roomname] || false;
-	const { roomstate, tmp, air, snd, occ } = await fetchRoom(roomname.toLowerCase() === "random");
+	const { roomstate, tmp, air, snd, occ } = await fetchRoom(roomname.toLowerCase());
 
 	switch (req.accepts(["html", "json"])){
 		case "html": return res.render("room", {roomstate, shouldnotify, roomname, tmp, air, snd, occ, date: getDate()});

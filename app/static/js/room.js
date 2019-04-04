@@ -10,8 +10,20 @@ const snd = document.querySelector("#snd");
 function setRoomState (options) {
 	const occupied = options.occ;
 	const temperature = options.tmp;
-	const airQuality = options.air;
-	const sound = options.snd;
+	const airQuality = (()=>{switch(options.air){
+		case "Geweldig": return 500;
+		case "Goed": return 750;
+		case "Matig": return 1000;
+		case "Slecht": return 2000;
+		default: return options.air;
+	}})();
+	const sound = (()=>{switch(options.snd){
+		case "Stil": return 2500;
+		case "Minimaal": return 6000;
+		case "Luid": return 8500;
+		case "Intens": return 8500;
+		default: return options.snd;
+	}})();
 	const roomstate = (()=>{
 			if      (temperature <= 14) return "freezing ";
 			else if (temperature <= 22) return "cool ";
@@ -48,8 +60,10 @@ function setRoomState (options) {
 	})();
 }
 
-/* Getting and updating data in app
-fetch("/Mayweather", {headers:{"Accept": "application/json"}})
-	.then(body => body.json())
-	.then(setRoomState);
-*/
+setInterval(() => {
+	console.log("Polling...");
+	const roomname = window.location.href.substring(window.location.href.lastIndexOf("/") + 1);
+	fetch("/" + roomname, {headers:{"Accept": "application/json"}})
+		.then(body => body.json())
+		.then(setRoomState);
+}, 5000);

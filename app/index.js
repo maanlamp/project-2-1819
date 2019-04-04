@@ -4,6 +4,7 @@ const bodyparser = require("body-parser").urlencoded({extended: false});
 const session = require("express-session")({secret: "Geheimpie ;)", resave: false, saveUninitialized: true});
 const { overview, room, reminder, unsub} = require("./routes.js");
 const compression = require("compression")();
+const static = express.static("app/static");
 const PORT = process.env.port || 1337;
 
 function initSession (req, res, next) {
@@ -18,7 +19,7 @@ app
 	.use(session)
 	.use(initSession)
 	.use(compression)
-	.use(express.static("app/static"));
+	.use(static);
 
 app
 	.get("/", overview)

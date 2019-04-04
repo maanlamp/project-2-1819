@@ -15,6 +15,15 @@
 	background: rgb(224,165,98) url("../images/bg-boiling.svg") no-repeat;
 }
 
+#app>#back {
+	background: none;
+	width: 1.5rem;
+	border: none;
+	position: absolute;
+	left: 2rem;
+	top: 1rem;
+}
+
 #app>#vis {
 	position: absolute;
 	top: 0;
